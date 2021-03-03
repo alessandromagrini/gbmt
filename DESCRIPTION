@@ -9,4 +9,4 @@ Description: Estimation of group-based multi-trajectory models.
 Depends: R (>= 3.5.0), Matrix
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2021-03-03 19:41:14 UTC; Alessandro
+Packaged: 2021-03-03 19:52:47 UTC; Alessandro

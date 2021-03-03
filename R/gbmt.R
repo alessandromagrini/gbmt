@@ -167,7 +167,7 @@ gbmt <- function(x.names,unit,time,ng,d=2,data,tol=1e-6,maxit=500,nstart=NULL,qu
     }
   rownames(res) <- NULL
   mOK$em <- res
-  mOK$data <- data[,c(unit,time,x.names)]
+  mOK$data <- dataOK[,c(unit,time,x.names)]
   mOK
   }
 
