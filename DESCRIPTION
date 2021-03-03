@@ -1,0 +1,12 @@
+Package: gbmt
+Type: Package
+Title: Group-Based Multi-Trajectory Modeling
+Version: 0.0
+Date: 2021-03-04
+Author: Alessandro Magrini
+Maintainer: Alessandro Magrini <alessandro.magrini@unifi.it>
+Description: Estimation of group-based multi-trajectory models.
+Depends: R (>= 3.5.0), Matrix
+License: GPL-2
+NeedsCompilation: no
+Packaged: 2021-03-03 19:41:14 UTC; Alessandro
