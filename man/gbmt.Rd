@@ -2,7 +2,8 @@
 \alias{gbmt}
 \title{Estimation of a group-based multi-trajectory model}
 \description{Estimation of a group-based multi-trajectory model through the Expectation-Maximization algorithm.}
-\usage{gbmt(x.names, unit, time, ng, d=2, data, tol=1e-6, maxit=500, nstart=NULL, quiet=FALSE)}
+\usage{gbmt(x.names, unit, time, ng, d=2, data, tol=1e-6, maxit=500,
+  nstart=NULL, quiet=FALSE)}
 \arguments{
   \item{x.names}{...}  
   \item{unit}{...}  
@@ -15,10 +16,15 @@
   \item{nstart}{...}
   \item{quiet}{...}  
   }
-\value{An object of class \code{gbmt}.}
+\value{An object of class \code{gbmt}, including the following components:
+\itemize{
+  \item{\code{...}: }{}
+  \item{\code{...}: }{}
+  }
+}
 \details{
 
-S3 methods \code{print}, \code{summary} and \code{plot} are available for class \code{cibn}.
+S3 methods \code{print}, \code{summary} and \code{plot} are available for class \code{gbmt}.
 }
 %\note{}
 \references{
@@ -38,30 +44,43 @@ varNames <- c("TFP_2005_CAP","NetCapital_GVA","Manager_ratio",
   "Income_rur","Unempl_rur","Poverty_rur",
   "RenewProd","Organic_p","GHG_UAA","GNB_UAA")
 
-# models
-d <- 2:3
-ng <- 3:8
-modList <- list()
-mnam <- c()
-for(i in 1:length(d)) {
-  for(j in 1:length(ng)) {
-    ijnam <- paste("m",ng[j],"_",d[i],sep="")
-    mnam <- c(mnam,ijnam)
-    ijm <- gbmt(x.names=varNames,unit="Country",time="Year",d=d[i],ng=ng[j],data=agrisus)
-    modList <- c(modList,list(ijm))
-    }
-  }
-names(modList) <- mnam
+# model with 2 degrees and 4 groups
+m4_2 <- gbmt(x.names=varNames, unit="Country", time="Year", d=2, ng=4 ,data=agrisus)
 
-# comparison among models based on BIC
-sort(sapply(modList,function(x){x$ic["bic"]}))
+# resulting groups
+m4_2$assign.list
 
-# groups identified by the final model
-modList$m4_2$assign.list
+# regressions
+m4_2$reg
 
-# graphics for the final model
-plot(modList$m4_2, group=1)
-plot(modList$m4_2, group=2)
-plot(modList$m4_2, group=3)
-plot(modList$m4_2, group=4)
+## NOT RUN: summary of regressions
+#summary(m4_2)
+
+## NOT RUN: all models combining 2 and 3 degrees with a number of groups from 3 to 8
+#d <- 2:3
+#ng <- 3:8
+#modList <- list()
+#mnam <- c()
+#for(i in 1:length(d)) {
+#  for(j in 1:length(ng)) {
+#    ijnam <- paste("m",ng[j],"_",d[i],sep="")
+#    mnam <- c(mnam,ijnam)
+#    ijm <- gbmt(x.names=varNames, unit="Country", time="Year",
+#                d=d[i], ng=ng[j], data=agrisus)
+#    modList <- c(modList,list(ijm))
+#    }
+#  }
+#names(modList) <- mnam
+#
+## comparison among models based on BIC
+#sort(sapply(modList,function(x){x$ic["bic"]}))
+#
+## groups resulting from the final model
+#modList$m4_2$assign.list
+#
+## graphics for the final model
+#plot(modList$m4_2, group=1)
+#plot(modList$m4_2, group=2)
+#plot(modList$m4_2, group=3)
+#plot(modList$m4_2, group=4)
 }
