@@ -27,12 +27,11 @@ _________________________________________________________________
 Load data on indicators of agricultural sustainability in EU countries, 2004-2018:
 ```
 data(agrisus)
-?agrisus  ## data description
+?agrisus          ## data description
 summary(agrisus)  ## data summaries
 ```
 Define the indicators:
 ```
-# names of indicators
 varNames <- c("TFP_2005_CAP","NetCapital_GVA","Manager_ratio",
   "FactorIncome_paid_2010","EntrIncome_unpaid_2010",
   "Income_rur","Unempl_rur","Poverty_rur",
@@ -78,6 +77,7 @@ for(i in 1:length(d)) {
     }
   }
 names(modList) <- mnam
-# comparison among models based on BIC
+
+# comparison among the models based on BIC
 sort(sapply(modList,function(x){x$ic["bic"]}))  ## lower BIC is for d=2 and ng=4
 ```
