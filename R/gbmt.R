@@ -167,7 +167,8 @@ gbmt <- function(x.names,unit,time,ng,d=2,data,tol=1e-6,maxit=500,nstart=NULL,qu
     }
   rownames(res) <- NULL
   mOK$em <- res
-  mOK$data <- dataOK[,c(unit,time,x.names)]
+  mOK$data.orig <- data[,c(unit,time,x.names)] 
+  mOK$data.scaled <- dataOK[,c(unit,time,x.names)]
   mOK
   }
 
@@ -376,7 +377,7 @@ summary.gbmt <- function(object, ...) {
   }
 
 # plot method
-plot.gbmt <- function(x, group, conf=0.95, equal.scale=FALSE, ylim=NULL, trim=0, titles=NULL, mfrow=NULL, mar=c(5.1,4.1,4.1,2.1), xlab="", ylab="", ...) {
+plot.gbmt <- function(x, group, equal.scale=FALSE, ylim=NULL, trim=0, titles=NULL, mfrow=NULL, mar=c(5.1,4.1,4.1,2.1), xlab="", ylab="", ...) {
   #
   ## check arguments
   #
@@ -385,17 +386,18 @@ plot.gbmt <- function(x, group, conf=0.95, equal.scale=FALSE, ylim=NULL, trim=0,
   xnam <- colnames(mu[[1]])
   tnam <- rownames(mu[[1]])
   gnam <- x$assign.list[[group]]
+  ##conf <- 0.95 
   #confMat <- confBands(c,conf=conf)
-  ind <- which(x$data[,1]%in%gnam)
+  ind <- which(x$data.scaled[,1]%in%gnam)
   if(is.null(mfrow)) mfrow <- n2mfrow(length(xnam))
   par(mar=mar,mfrow=mfrow)
   for(i in 1:length(xnam)) {
     itit <- ifelse(is.null(titles),xnam[i],titles[i])
     if(equal.scale==T) {
-      ily <- quantile(x$data[,xnam[i]],prob=c(trim/2,1-trim/2),na.rm=T)
+      ily <- quantile(x$data.scaled[,xnam[i]],prob=c(trim/2,1-trim/2),na.rm=T)
       } else {
       if(is.null(ylim)) {
-        ily <- range(x$data[ind,xnam[i]],na.rm=T)
+        ily <- range(x$data.scaled[ind,xnam[i]],na.rm=T)
         } else {
         if(!is.matrix(ylim)) ily <- ylim else ily <- ylim[i,]  
         }
@@ -405,8 +407,8 @@ plot.gbmt <- function(x, group, conf=0.95, equal.scale=FALSE, ylim=NULL, trim=0,
     abline(v=1:x$nt,lty=3,col="grey80")
     axis(1, at=1:x$nt, labels=tnam, las=2, ...)
     for(j in 1:length(gnam)) {
-      ijind <- which(x$data[,1]==gnam[j])
-      lines(1:x$nt,x$data[ijind,xnam[i]],col="grey70")
+      ijind <- which(x$data.scaled[,1]==gnam[j])
+      lines(1:x$nt,x$data.scaled[ijind,xnam[i]],col="grey70")
       }
     #
     #lines(1:x$nt,confMat$lower[[group]][,xnam[i]])
