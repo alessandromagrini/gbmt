@@ -74,5 +74,5 @@ for(i in 1:length(d)) {
 names(modList) <- mnam
 
 # comparison among the models based on BIC
-sort(sapply(modList,function(x){x$ic["bic"]}))  ## lower BIC is for d=2 and ng=4
+sort(sapply(modList,function(x){x$ic["bic"]}))  ## the lowest BIC is for d=2 and ng=4
 ```
