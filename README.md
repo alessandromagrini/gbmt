@@ -45,11 +45,6 @@ See the resulting groups:
 ```
 m4_2$assign.list
 ```
-See the regression coefficients for each group:
-```
-m4_2$reg
-summary(m4_2)  ## summary of the regressions
-```
 See the group-based trajectories:
 ```
 m4_2$predicted
