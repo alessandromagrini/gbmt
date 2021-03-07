@@ -1,7 +1,7 @@
 # gbmt
 __Estimation of group-based multi-trajectory models__
 
-`gbmt` is an R package implementing maximum likelihood estimation through the Expectation-Maximization algorithm for group-based multi-trajectory models.
+`gbmt` is an R package implementing several functionalities for group-based multi-trajectory models, including maximum likelihood estimation through the Expectation-Maximization algorithm and graphical visualization of group-based trajectories.
 The reference papers are:
 
 A. Magrini (2021). Assessment of agricultural sustainability in European Union countries: a group-based multi-trajectory approach. _Under review_.
