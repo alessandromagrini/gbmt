@@ -167,7 +167,7 @@ gbmt <- function(x.names,unit,time,ng,d=2,data,tol=1e-6,maxit=500,nstart=NULL,qu
     }
   rownames(res) <- NULL
   mOK$em <- res
-  mOK$mean <- apply(data[,x.names,drop=F],2,na.rm=T)
+  mOK$mean <- apply(data[,x.names,drop=F],2,mean,na.rm=T)
   mOK$data.orig <- data[,c(unit,time,x.names)] 
   mOK$data.scaled <- dataOK[,c(unit,time,x.names)]
   mOK
@@ -443,7 +443,7 @@ predict.gbmt <- function(object, n.ahead=NULL, ...) {
   resOK <- res
   for(i in 1:length(res)) {
     for(j in 1:ncol(res[[i]])) {
-      resOK[[i]][,j] <- res[[i]][,j]*mu[colnames(res[[i]][j])]
+      resOK[[i]][,j] <- res[[i]][,j]*mu[colnames(res[[i]])[j]]
       }
     }
   resOK

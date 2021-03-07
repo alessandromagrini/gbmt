@@ -5,8 +5,8 @@ Version: 0.0
 Date: 2021-03-04
 Author: Alessandro Magrini
 Maintainer: Alessandro Magrini <alessandro.magrini@unifi.it>
-Description: Estimation of group-based multi-trajectory models.
+Description: Estimation and analysis of group-based multi-trajectory models.
 Depends: R (>= 3.5.0), Matrix
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2021-03-07 17:29:06 UTC; Alessandro
+Packaged: 2021-03-07 19:10:34 UTC; Alessandro
