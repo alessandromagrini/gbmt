@@ -3,10 +3,14 @@ export(gbmt)
 S3method(print, gbmt)
 S3method(summary, gbmt)
 S3method(plot, gbmt)
+S3method(residuals, gbmt)
+S3method(fitted, gbmt)
+S3method(predict, gbmt)
 
 import(Matrix)
 importFrom("grDevices", "n2mfrow")
 importFrom("graphics", "abline", "axis", "box", "grid", "lines", "par")
 importFrom("stats", "AIC", "cov", "dnorm", "formula", "kmeans", "lm",
-           "nobs", "predict", "qt", "quantile", "runif", "spline", "var")
+           "nobs", "predict", "qt", "quantile", "runif", "spline", "var",
+           "fitted", "residuals")
 importFrom("utils", "flush.console")

@@ -308,7 +308,7 @@ gbmtFit <- function(x.names,unit,time,ng,d=2,data,tol=1e-6,maxit=150,quiet=F,ini
           aicc=-2*ll_new+2*npar*(1+(npar+1)/(n*nt-npar-1)),
           bic=-2*ll_new+npar*log(n*nt))
   res <- list(ng=ng, d=d, nt=nt, pi=pi, beta=lapply(beta,t), Sigma=S,
-              predicted=pred, reg=reg, posterior=postp, assign=Z, assign.list=assL,
+              fitted=pred, reg=reg, posterior=postp, assign=Z, assign.list=assL,
               Rsq=Rsq, logLik=ll_new, ic=ic,
               em=c(n.iter=count,converged=conv))
   class(res) <- "gbmt"
@@ -381,7 +381,7 @@ plot.gbmt <- function(x, group, equal.scale=FALSE, ylim=NULL, trim=0, titles=NUL
   #
   ## check arguments
   #
-  mu <- x$predicted
+  mu <- x$fitted
   np <- ncol(mu[[1]])
   xnam <- colnames(mu[[1]])
   tnam <- rownames(mu[[1]])
@@ -418,4 +418,24 @@ plot.gbmt <- function(x, group, equal.scale=FALSE, ylim=NULL, trim=0, titles=NUL
     box()
     }
   par(mar=c(5.1,4.1,4.1,2.1),mfrow=c(1,1))
+  }
+
+# residuals method
+residuals.gbmt <- function(object, ...) {
+  lapply(object$reg, residuals)
+  }
+
+# fitted method
+fitted.gbmt <- function(object, ...) {
+  lapply(object$reg, fitted)
+  }
+
+# fitted method
+predict.gbmt <- function(object, n.ahead=NULL, ...) {
+  if(is.null(n.ahead)) {
+    object$fitted
+    } else {
+    tdat <- data.frame(t=(object$nt+1):(object$nt+n.ahead))
+    lapply(object$reg, predict, newdata=tdat, ...)
+    }
   }

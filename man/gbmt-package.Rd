@@ -2,7 +2,7 @@
 \alias{gbmt-package}
 \docType{package}
 \title{Group-Based Multi-Trajectory Modeling}
-\description{Estimation of group-based multi-trajectory models.}
+\description{Estimation and analysis of group-based multi-trajectory models.}
 \details{
   \tabular{ll}{
   Package: \tab gbmt\cr
@@ -13,8 +13,12 @@
   }
 Group-based trajectory modeling is a statistical method to create groups of units based on the similarity in the multivariate time series of a set of variables.
 It is a special case of latent class growth curves where the units in the same group have the same trajectory (Nagin, 2005), but it assumes a multivariate Normal linear regression within each group, instead of a univariate one, to account for multiple indicators (Nagin et al., 2018; Magrini, 2021).
-The main function of the package is \link{gbmt}, which serves to estimate a group-based multi-trajectory model.
-Method \link{plot.gbmt} can be used to obtain the graphics of group-based trajectories.
+The main functions of the package are:
+\itemize{
+\item{\link{gbmt}: }{to estimate a group-based multi-trajectory model through the Expectation-Maximization algorithm;}
+\item{\link{plot.gbmt}:} {to obtain the graphics of group-based trajectories;}
+\item{\link{predict.gbmt}:} {to make prediction on group-based trajectories.}
+}
 }
 \author{Alessandro Magrini <alessandro.magrini@unifi.it>}
 \references{
