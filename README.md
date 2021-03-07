@@ -47,7 +47,7 @@ m4_2$assign.list
 ```
 See the group-based trajectories:
 ```
-m4_2$predicted
+m4_2$fitted
 ```
 Graphics of the group-based trajectories:
 ```
@@ -55,6 +55,10 @@ plot(m4_2, group=1)  ## group 1
 plot(m4_2, group=2)  ## group 2
 plot(m4_2, group=3)  ## group 3
 plot(m4_2, group=4)  ## group 4
+```
+Prediction of group-based trajectories:
+```
+predict(m4_2, n.ahead=3)  ## 3-step ahead
 ```
 The following code allows to fit all models combining 2 and 3 polynomial degrees with a number of groups from 3 to 8:
 ```
