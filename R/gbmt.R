@@ -167,6 +167,7 @@ gbmt <- function(x.names,unit,time,ng,d=2,data,tol=1e-6,maxit=500,nstart=NULL,qu
     }
   rownames(res) <- NULL
   mOK$em <- res
+  mOK$mean <- apply(data[,x.names,drop=F],2,na.rm=T)
   mOK$data.orig <- data[,c(unit,time,x.names)] 
   mOK$data.scaled <- dataOK[,c(unit,time,x.names)]
   mOK
@@ -430,12 +431,20 @@ fitted.gbmt <- function(object, ...) {
   lapply(object$reg, fitted)
   }
 
-# fitted method
+# predict method
 predict.gbmt <- function(object, n.ahead=NULL, ...) {
+  mu <- object$mean
   if(is.null(n.ahead)) {
-    object$fitted
+    res <- object$fitted
     } else {
     tdat <- data.frame(t=(object$nt+1):(object$nt+n.ahead))
-    lapply(object$reg, predict, newdata=tdat, ...)
+    res <- lapply(object$reg, predict, newdata=tdat, ...)
     }
+  resOK <- res
+  for(i in 1:length(res)) {
+    for(j in 1:ncol(res[[i]])) {
+      resOK[[i]][,j] <- res[[i]][,j]*mu[colnames(res[[i]][j])]
+      }
+    }
+  resOK
   }

@@ -33,6 +33,7 @@
   \item{\code{logLik}: }{log-likelihood of the model.}
   \item{\code{ic}: }{information criteria for the model.}
   \item{\code{em}: }{matrix including information on number of iteration and convergence (1=yes, 0=no) for each run of the Expectation-Maximization algorithm.}
+  \item{\code{mean}: }{vector including the sample mean of each indicator.}
   \item{\code{data.orig}: }{data provided to argument \code{data}.}
   \item{\code{data.scaled}: }{data after rescaling to unit mean.}
   }

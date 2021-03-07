@@ -10,9 +10,9 @@
   \item{n.ahead}{Numeric value indicating the number of steps ahead to perform prediction. If \code{NULL} (the default), group-based trajectories in the observed period are returned.}
   \item{...}{Further arguments for the generic \code{predict} method.}
 }
-%\value{}
+\value{A list with one component for each group. Each component includes an object of class \code{data.frame} with one entry for each step ahead at which prediction is made.}
 %\details{}
-%\note{}
+\note{Predictions are made on the original scales of indicators.}
 %\references{}
 \seealso{\link{gbmt}.}
 \examples{
