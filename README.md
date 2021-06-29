@@ -24,6 +24,10 @@ For any request or feedback, please write to <alessandro.magrini@unifi.it> (Ales
 Below, you find some examples of use of the package.
 _________________________________________________________________
 
+Load the `gbmt` package
+```
+library(gbmt)
+```
 Load data on indicators of agricultural sustainability in EU countries, 2004-2018:
 ```
 data(agrisus)
